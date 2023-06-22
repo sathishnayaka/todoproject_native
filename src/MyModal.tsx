@@ -36,6 +36,7 @@ const MyModal: React.FC<MyModalProps> = ({
   return (
     <Modal
       animationType="slide"
+      testID='myModal'
       transparent={true}
       visible={visible}
       onRequestClose={onClose}>
@@ -43,14 +44,14 @@ const MyModal: React.FC<MyModalProps> = ({
         <View style={styles.modalContent}>
           <TextInput
             style={styles.input}
-            placeholder="update your todo's"
+            placeholder="update your todos"
             value={inputValue}
             onChangeText={handleInputChange}
           />
 
           <View style={styles.buttonContainer}>
-            <Button title="Update" onPress={handleConfirm} />
-            <Button title="Cancel" onPress={handleCancel} />
+            <Button title="Update" onPress={handleConfirm} testID='updateButton' />
+            <Button title="Cancel" onPress={handleCancel} testID='cancelButton' />
           </View>
         </View>
       </View>

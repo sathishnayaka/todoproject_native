@@ -36,11 +36,10 @@ type SectionProps = PropsWithChildren<{
 function TodoComponent(): JSX.Element {
   const [todos, setTodos] = useState('');
   const [todoList, setTodoList] = useState<(typeof todos)[]>([
-    'satheesh naakaya',
   ]);
   const [updateValue, setUpdateValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [updateIndex, setUpdateIndex] = useState<number>();
+  const [updateIndex, setUpdateIndex] = useState<number>(0);
   const isDarkMode = useColorScheme() === 'dark';
 
   const onChange = (value: string) => {
@@ -73,10 +72,10 @@ function TodoComponent(): JSX.Element {
 
   const onUpdatePress = (value: string) => {
     const list = [...todoList];
-    if (updateIndex) {
+    console.log(updateIndex,value, "values and idnejkjsd")
       list[updateIndex] = value;
+      console.log(list);
       setTodoList(list);
-    }
   };
 
   return (
@@ -99,7 +98,7 @@ function TodoComponent(): JSX.Element {
         </View>
         {todoList.length === 0 ? (
           <View style={styles.todoContainerEmpty}>
-            <Text style={styles.text}>Todo list is empty</Text>
+            <Text style={styles.text} testID='emptyMessage'>Todo list is empty</Text>
           </View>
         ) : (
           <View style={{columnGap: 2}}>
@@ -121,6 +120,7 @@ function TodoComponent(): JSX.Element {
                   <View style={{marginRight: 10}}>
                     <Button
                       title="Edit"
+                      testID='editButton'
                       onPress={() => {
                         onUpdate(index);
                       }}
@@ -128,6 +128,7 @@ function TodoComponent(): JSX.Element {
                   </View>
                   <Button
                     title="delete"
+                    testID='deleteButton'
                     onPress={() => {
                       onDelete(index);
                     }}
